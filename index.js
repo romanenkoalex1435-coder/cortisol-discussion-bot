@@ -20,6 +20,13 @@ const WELCOME_KEYBOARD = Markup.inlineKeyboard([
   Markup.button.url('Поддержка', 'https://t.me/cortisolsupportbot'),
 ]);
 
+const START_TEXT = 'Я чат-бот Кости Кортизола!';
+
+const START_KEYBOARD = Markup.inlineKeyboard([
+  Markup.button.url('Тгк', 'https://t.me/cortisoljeans'),
+  Markup.button.url('Чат', 'https://t.me/cortisolchat'),
+]);
+
 // media_group_id -> timestamp of when it was handled. Prevents duplicate
 // greetings when a single channel post fans out into multiple forwarded
 // messages (album/media group).
@@ -37,11 +44,11 @@ function pruneHandledMediaGroups() {
 
 const bot = new Telegraf(BOT_TOKEN);
 
-bot.on('message', async (ctx) => {
+bot.on('message', async (ctx, next) => {
   const message = ctx.message;
 
   if (!message.is_automatic_forward) {
-    return;
+    return next();
   }
 
   if (message.media_group_id) {
@@ -56,6 +63,14 @@ bot.on('message', async (ctx) => {
     reply_to_message_id: message.message_id,
     ...WELCOME_KEYBOARD,
   });
+});
+
+bot.start(async (ctx) => {
+  if (ctx.chat.type !== 'private') {
+    return;
+  }
+
+  await ctx.reply(START_TEXT, START_KEYBOARD);
 });
 
 bot.launch().then(() => {
