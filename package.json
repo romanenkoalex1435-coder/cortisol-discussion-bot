@@ -1,0 +1,17 @@
+{
+  "name": "cortisol-discussion-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot that greets auto-forwarded channel posts in the Cortisol discussion group",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "telegraf": "^4.16.3"
+  }
+}
