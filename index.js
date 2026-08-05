@@ -15,9 +15,13 @@ const WELCOME_TEXT = [
 ].join('\n');
 
 const WELCOME_KEYBOARD = Markup.inlineKeyboard([
-  Markup.button.url('Чат', 'https://t.me/cortisolchat'),
-  Markup.button.url('Сайт', 'https://www.cortisoljeans.ru'),
-  Markup.button.url('Поддержка', 'https://t.me/cortisolsupportbot'),
+  [
+    Markup.button.url('Чат', 'https://t.me/cortisolchat'),
+    Markup.button.url('Сайт', 'https://www.cortisoljeans.ru'),
+  ],
+  [
+    Markup.button.url('Бот поддержки', 'https://t.me/cortisolsupportbot'),
+  ],
 ]);
 
 const START_TEXT = 'Я чат-бот Кости Кортизола!';
